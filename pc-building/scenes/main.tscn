@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://o08oi37miiy"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_6pdax"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_6pdax")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_top = 0.002
+anchor_bottom = 0.002
+offset_left = 413.0
+offset_top = 111.704
+offset_right = 631.0
+offset_bottom = 233.704
+text = "Play"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 412.0
+offset_top = 259.0
+offset_right = 629.0
+offset_bottom = 370.0
+text = "Quit"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
