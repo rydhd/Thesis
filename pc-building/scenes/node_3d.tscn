@@ -1,16 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://ufbcfrg2mgv0"]
+[gd_scene load_steps=8 format=3 uid="uid://ufbcfrg2mgv0"]
 
 [ext_resource type="PackedScene" uid="uid://5274nlq1e584" path="res://assets/3D Models/PC Chassis.blend" id="1_0ulin"]
-[ext_resource type="PackedScene" uid="uid://dnyvbxwaydtny" path="res://assets/3D Models/GPU RX580.blend" id="3_5ouk1"]
+[ext_resource type="Script" uid="uid://hrve2oejhbah" path="res://scenes/camera_3d.gd" id="1_eyj4n"]
+[ext_resource type="PackedScene" uid="uid://dwg8v1wrwg5n8" path="res://scenes/gpu.tscn" id="5_a6664"]
+[ext_resource type="Script" uid="uid://sjl3hrors8oq" path="res://scripts/gpu.gd" id="6_10v3s"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ualc5"]
-size = Vector3(4.58057, 1, 6.20291)
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2jru"]
+size = Vector3(3.09384, 1.41965, 8.54706)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqwcg"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a6664"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.999617, -0.00867457, 0.0262935, 0.00799736, 0.999636, 0.0257518, -0.0265073, -0.0255317, 0.999323, 4.34391, 8.8492, 24.8878)
+[node name="MeshCam" type="Camera3D" parent="."]
+transform = Transform3D(0.999617, -0.00867455, 0.0262935, 0.00799736, 0.999636, 0.0257519, -0.0265073, -0.0255317, 0.999323, 4.34391, 8.8492, 24.8878)
 fov = 60.0
+script = ExtResource("1_eyj4n")
 
 [node name="PC Chassis" parent="." instance=ExtResource("1_0ulin")]
 transform = Transform3D(5.52102, -0.0612843, 0.394723, 0.0366945, 5.5246, 0.344495, -0.397763, -0.34098, 5.5106, 6.16704, 9.20195, 3.20579)
@@ -18,14 +28,23 @@ transform = Transform3D(5.52102, -0.0612843, 0.394723, 0.0366945, 5.5246, 0.3444
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72917, -13.8414, 0.545218)
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="Area3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.327898, 0.208235, -0.103863)
+disable_mode = 1
+collision_mask = 3
+input_capture_on_drag = true
 
-[node name="GPU RX580" parent="RayCast3D" instance=ExtResource("3_5ouk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4747, 1.55659, 18.6586)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.60473, 5.39865, 8.75981)
+shape = SubResource("BoxShape3D_s2jru")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="RayCast3D/GPU RX580"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0372, -1.10182, -18.6431)
+[node name="GPU" parent="Area3D/CollisionShape3D" instance=ExtResource("5_a6664")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27232, -0.175313, 12.1218)
+skeleton = NodePath("../../..")
+script = ExtResource("6_10v3s")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RayCast3D/GPU RX580/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.95608, 1.54643, 10.6277)
-shape = SubResource("BoxShape3D_ualc5")
+[node name="SnapIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.858608, 8.49271, 1.08171)
+material_override = SubResource("StandardMaterial3D_oqwcg")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_a6664")
