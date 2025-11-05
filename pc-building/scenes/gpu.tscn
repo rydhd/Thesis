@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwg8v1wrwg5n8"]
+[gd_scene load_steps=2 format=3 uid="uid://dp0vflh3ab54h"]
 
 [ext_resource type="PackedScene" uid="uid://dnyvbxwaydtny" path="res://assets/3D Models/GPU RX580.blend" id="1_6s3po"]
 
 [node name="GPU" type="MeshInstance3D"]
 
 [node name="GPU RX580" parent="." instance=ExtResource("1_6s3po")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.09657, 0, -2.93672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02755, 0.278049, 6.28054)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://1n7biqu3mqxp"]
+
+[ext_resource type="Texture2D" uid="uid://cjajbtkaf18is" path="res://assets/2D Assets/Gelo _Chip_ Vergara.png" id="1_mtav4"]
+[ext_resource type="Script" uid="uid://d2vhom0l6kenr" path="res://scripts/npc_customer.gd" id="1_u0jq1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0jq1"]
+radius = 152.0
+height = 374.0
+
+[node name="CustomerArea" type="Area2D"]
+script = ExtResource("1_u0jq1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(181.50002, 57.999977)
+scale = Vector2(0.39637095, 0.37185356)
+texture = ExtResource("1_mtav4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(173, 360)
+shape = SubResource("CapsuleShape2D_u0jq1")
