@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://clmc2eglxj6f4" path="res://scenes/ui.gd" id="3_5t4e2"]
 [ext_resource type="PackedScene" uid="uid://dgh5htftq52bw" path="res://scenes/pc_fan.tscn" id="4_10v3s"]
 [ext_resource type="PackedScene" uid="uid://dk5yk42ttb1xp" path="res://scenes/pc_chassis.tscn" id="6_a6664"]
+[ext_resource type="Script" path="res://scenes/ui.gd" id="3_5t4e2"]
+[ext_resource type="PackedScene" path="res://scenes/pc_fan.tscn" id="4_10v3s"]
+[ext_resource type="PackedScene" path="res://scenes/pc_chassis.tscn" id="6_a6664"]
 
 [node name="Node3D" type="Node3D"]
 
