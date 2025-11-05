@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw57pm1y8puhg"]
+
+[ext_resource type="PackedScene" uid="uid://dwg8v1wrwg5n8" path="res://scenes/gpu.tscn" id="1_cemll"]
+[ext_resource type="Script" uid="uid://sjl3hrors8oq" path="res://scripts/gpu.gd" id="2_ebbpo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2jru"]
+size = Vector3(2, 1.15172, 3)
+
+[node name="Area3D" type="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+disable_mode = 1
+collision_mask = 3
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.15192, 3.48415, 11.8621)
+shape = SubResource("BoxShape3D_s2jru")
+debug_color = Color(0, 1, 1, 1)
+
+[node name="GPU" parent="CollisionShape3D" instance=ExtResource("1_cemll")]
+transform = Transform3D(0.5, 0, 0, 0, 0.644, 0, 0, 0, 0.5, 4.30124, -0.45788, 0.80783)
+gi_lightmap_texel_scale = 0.01
+skeleton = NodePath("../../..")
+script = ExtResource("2_ebbpo")

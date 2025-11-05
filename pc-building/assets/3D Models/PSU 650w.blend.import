@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://3e7w6re7w4vr"
-path="res://.godot/imported/PC Fan.blend-281f375f44d9bbcfa8986dbb993d990c.scn"
+uid="uid://bkxkcia5mffho"
+path="res://.godot/imported/PSU 650w.blend-75f1ce07e72880d02f8058d6ba1a36e7.scn"
 
 [deps]
 
-source_file="res://assets/3D Models/PC Fan.blend"
-dest_files=["res://.godot/imported/PC Fan.blend-281f375f44d9bbcfa8986dbb993d990c.scn"]
+source_file="res://assets/3D Models/PSU 650w.blend"
+dest_files=["res://.godot/imported/PSU 650w.blend-75f1ce07e72880d02f8058d6ba1a36e7.scn"]
 
 [params]
 

@@ -1,54 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://ufbcfrg2mgv0"]
+[gd_scene load_steps=5 format=3 uid="uid://ufbcfrg2mgv0"]
 
-[ext_resource type="PackedScene" uid="uid://5274nlq1e584" path="res://assets/3D Models/PC Chassis.blend" id="1_0ulin"]
-[ext_resource type="Script" uid="uid://hrve2oejhbah" path="res://scenes/camera_3d.gd" id="1_eyj4n"]
-[ext_resource type="PackedScene" uid="uid://dwg8v1wrwg5n8" path="res://scenes/gpu.tscn" id="5_a6664"]
-[ext_resource type="Script" uid="uid://sjl3hrors8oq" path="res://scripts/gpu.gd" id="6_10v3s"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s2jru"]
-size = Vector3(3.09384, 1.15172, 8.54706)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqwcg"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0, 1, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_a6664"]
-size = Vector3(1.5, 0.5, 2.5)
+[ext_resource type="Script" path="res://scripts/camera_3d.gd" id="2_5t4e2"]
+[ext_resource type="Script" uid="uid://clmc2eglxj6f4" path="res://scenes/ui.gd" id="3_5t4e2"]
+[ext_resource type="PackedScene" uid="uid://dgh5htftq52bw" path="res://scenes/pc_fan.tscn" id="4_10v3s"]
+[ext_resource type="PackedScene" uid="uid://dk5yk42ttb1xp" path="res://scenes/pc_chassis.tscn" id="6_a6664"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="MeshCam" type="Camera3D" parent="."]
-transform = Transform3D(0.999617, -0.00867455, 0.0262935, 0.00799736, 0.999636, 0.0257519, -0.0265073, -0.0255317, 0.999323, 4.34391, 8.8492, 24.8878)
-fov = 60.0
-script = ExtResource("1_eyj4n")
-
-[node name="PC Chassis" parent="." instance=ExtResource("1_0ulin")]
-transform = Transform3D(5.52102, -0.0612843, 0.394723, 0.0366945, 5.5246, 0.344495, -0.397763, -0.34098, 5.5106, 6.16704, 9.20195, 3.20579)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72917, -13.8414, 0.545218)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
 
-[node name="Area3D" type="StaticBody3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.34716, -0.30139, -11.0489)
-disable_mode = 1
-collision_mask = 3
-input_capture_on_drag = true
+[node name="PC Chassis" parent="." instance=ExtResource("6_a6664")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -1, 0, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.605, 3.48415, 9.59743)
-shape = SubResource("BoxShape3D_s2jru")
-debug_color = Color(0, 1, 1, 1)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 8, 5)
+script = ExtResource("2_5t4e2")
 
-[node name="GPU" parent="Area3D/CollisionShape3D" instance=ExtResource("5_a6664")]
-transform = Transform3D(0.5, 0, 0, 0, 0.644, 0, 0, 0, 0.5, 1.38513, -0.45788, 7.96208)
-skeleton = NodePath("../../..")
-script = ExtResource("6_10v3s")
-max_y = 6.0
-snap_distance_threshold = 5.0
+[node name="PC Fan" parent="." groups=["pc_fan"] instance=ExtResource("4_10v3s")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 5, -1)
 
-[node name="SnapIndicator" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6.509, 8.49271, 4.39499)
-material_override = SubResource("StandardMaterial3D_oqwcg")
-cast_shadow = 0
-mesh = SubResource("BoxMesh_a6664")
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_5t4e2")
+
+[node name="BackButton" type="Button" parent="UI"]
+offset_right = 160.0
+offset_bottom = 72.0
+text = "Back"
+
+[connection signal="pressed" from="UI/BackButton" to="UI" method="_on_back_button_pressed"]

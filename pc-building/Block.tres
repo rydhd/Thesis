@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://c0nm8nd2y1ccr"]
+
+[ext_resource type="Texture2D" uid="uid://df0yyx6emtvcf" path="res://assets/tube.png" id="1_jocw3"]
+[ext_resource type="PackedScene" uid="uid://dgh5htftq52bw" path="res://scenes/pc_fan.tscn" id="2_gh5n7"]
+[ext_resource type="Script" uid="uid://i282q8ghpgxv" path="res://ItemResource.gd" id="2_jocw3"]
+
+[resource]
+script = ExtResource("2_jocw3")
+item_name = "Fan"
+item_icon = ExtResource("1_jocw3")
+item_scene = ExtResource("2_gh5n7")
